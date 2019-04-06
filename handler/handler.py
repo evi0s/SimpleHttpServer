@@ -1,8 +1,8 @@
 """Handler"""
 import os
+import mimetypes
 
 from utils.debug import *
-from utils.filetype import filetype
 from handlerExceptions import *
 import config
 
@@ -37,12 +37,12 @@ def get_file(path):
         file_info['length'] = os.path.getsize(file_path)
 
         # Get file mime
-        type = filetype.guess(file_path)
-        if type is None:
-            file_info['mime'] = 'text/html'
+        file_type = mimetypes.guess_type(file_path)
+        if file_type[0] is None:
+            file_info['mime'] = 'text/plain'
         else:
-            debug(type.mime)
-            file_info['mime'] = type.mime
+            debug(file_type[0])
+            file_info['mime'] = file_type[0]
 
         return file_info
     except FileNotFoundError:
