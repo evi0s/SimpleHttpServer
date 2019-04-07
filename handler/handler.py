@@ -41,7 +41,7 @@ def get_file(path):
         if file_type[0] is None:
             file_info['mime'] = 'text/plain'
         else:
-            debug(file_type[0])
+            debug(f'File MIME: {file_type[0]}')
             file_info['mime'] = file_type[0]
 
         return file_info
@@ -77,9 +77,10 @@ def error_page(err):
 
 
 def handle(request):
-    raw_request = str(request, encoding="utf-8")
+
+    # raw_request = str(request, encoding="utf-8")
     try:
-        request_object = Request(raw_request).get_request()
+        request_object = Request(request).get_request()
         debug(request_object)
         judge_method(request_object['method'])
         file_info = get_file(request_object['path'])
