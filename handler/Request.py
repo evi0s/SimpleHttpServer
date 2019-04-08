@@ -1,6 +1,7 @@
 """Request model"""
 from urllib.parse import unquote
 from handlerExceptions import *
+from utils.debug import *
 
 
 class Request:
@@ -62,10 +63,17 @@ class Request:
     # Keep path safe
     @staticmethod
     def clean_path(path):
-        if '..' in path:
-            return Request.clean_path(path)
-        else:
-            return path
+        try:
+            if b'\x00' in path.encode():
+                debug("Null char detected")
+                raise E400Exception.E400Exception()
+            if '..' in path:
+                return Request.clean_path(path)
+            else:
+                return path
+        except RecursionError:
+            error("Recursion error in cleaning require path!")
+            raise E500Exception.E500Exception()
 
     # Get path
     def get_path(self):
