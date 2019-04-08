@@ -71,6 +71,7 @@ def server():
                 # Keyboard interrupt
                 except KeyboardInterrupt:
                     error("KeyboardInterrupt")
+                    server_socket.close()
                     sys.exit(0)
 
             # Clean dead connections
@@ -79,4 +80,5 @@ def server():
 
         except KeyboardInterrupt:
             error("KeyboardInterrupt")
+            server_socket.close()
             sys.exit(0)

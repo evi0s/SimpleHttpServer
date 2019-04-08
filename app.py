@@ -18,6 +18,11 @@ elif config.server_type == 'ASYNC':
     # Import Async server
     from asyncserver import server
 
+else:
+
+    # Import Multi Thread server
+    from multithreadserver import server
+
 try:
     server()
 except:

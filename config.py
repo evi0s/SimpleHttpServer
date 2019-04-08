@@ -27,5 +27,5 @@ server_type = 'UNBLOCK'
 if 'SERVERTYPE' in os.environ:
     if os.environ['SERVERTYPE'] == 'ASYNC':
         server_type = 'ASYNC'
-    elif os.environ['SERVERTYPE'] == 'THREADPOLL':
-        server_type = 'THREADPOLL'
+    elif os.environ['SERVERTYPE'] == 'MULTITHREAD':
+        server_type = 'MULTITHREAD'
