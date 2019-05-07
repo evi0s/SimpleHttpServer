@@ -20,6 +20,33 @@ Environments
     - **MULTITHREAD** Multi thread server
     - **UNBLOCK** Socket unblock server *Default*
 
+### Deploy by docker
+
+Build
+
+```bash
+docker build -t evi0s/simple-http-server .
+```
+
+Deploy
+
+```bash
+docker run -it -d --name=server \
+        -e DEBUG=TRUE \
+        -e SERVERTYP=MULTITHREAD \
+        -p 8080:80 \
+        -v ${PWD}/static/:/app/static \
+        evi0s/simple-http-server
+```
+
+You can see container logs by
+
+```bash
+docker logs server
+```
+
+You can access Web server on `http://127.0.0.1:8080`
+
 ## Detailed
 
 ### app.py
