@@ -6,6 +6,7 @@ import sys
 abspath = os.getcwd()
 defaultStaticDir = abspath + '/static'
 defaultErrorDir = abspath + '/errorPage'
+handlerPath = abspath + '/handler'
 
 port = 80
 if 'PORT' in os.environ:

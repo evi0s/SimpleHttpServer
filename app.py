@@ -7,6 +7,7 @@ from utils.debug import *
 
 # Add libs to sys path
 sys.path.append(config.abspath)
+sys.path.append(config.handlerPath)
 
 if config.server_type == 'UNBLOCK':
 
@@ -25,5 +26,6 @@ else:
 
 try:
     server()
-except:
+except Exception as e:
     error("An error has occurred!")
+    error(e.args)
